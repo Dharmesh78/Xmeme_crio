@@ -4,7 +4,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Xmeme home page</title>
+    <title>Xmeme _Dharmesh Singh</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -12,10 +12,10 @@
 
 
     <style type="text/css">
-  		body{
-  		  background: rgb(54,217,182);
-  		  background: linear-gradient(90deg, rgba(54,217,182,1) 0%, rgba(32,152,126,1) 43%, rgba(0,212,255,1) 100%);
-  		}
+
+      body {
+       background-color: #E7F1F2;
+     }
 
 
   		h1, h2, h3, h4, h5, p, span, strike{
@@ -24,7 +24,7 @@
   		}
 
 
-  		#task-container{
+  		#meme-container{
   		  max-width:600px;
   		  margin:0 auto;
   		  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
@@ -45,7 +45,7 @@
   		  border-bottom: 1px solid  #e9e9e9;
   		  background-color: #fff;
   		  box-shadow: 0 3px 8px rgba(0,0,0,0.25);
-   		  padding:40px;
+   		  padding:10px;
   		}
 
   		#submit{
@@ -55,14 +55,10 @@
   		  color: #fff;
   		}
 
-  		.flex-wrapper{
-  			display: flex;
-  		}
-
-  		.task-wrapper{
+  		.list-wrapper{
   		  	margin:5px;
   		  	padding: 5px;
-  		  	padding:20px;
+  		  	padding:10px;
   		  	cursor: pointer;
   		  	border-bottom: 1px solid  #e9e9e9;
   		  	color: #686868;
@@ -72,20 +68,28 @@
 
   </head>
   <body>
+    <nav class="navbar navbar-inverse navbar-static-top">
+      <div class="container">
+
+        <ul class="nav navbar-nav">
+          <li><a class="navbar-brand" href="{% url 'frontend:list' %}"><em>XMeme</em><img src="https://media-exp1.licdn.com/dms/image/C510BAQF_iUEvYAZALQ/company-logo_200_200/0/1584436167827?e=2159024400&v=beta&t=qSMMNUBhEWojHutqv4AWgZbqtALCI-kQsVT9g9P9AwI" width="60" height="50" alt="crio.do"></a></li>
+          <!-- <li><a class="navbar-link" href="{% url 'admin:index' %}">Admin</a></li> -->
+          <li><a class="navbar-link" href="https://dharmesh78-criowod.netlify.app/">My Profile</a></li>
+
+        </ul>
+    </nav>
   	<div class="container">
 
-  		<div id="task-container">
+  		<div id="meme-container">
   			<div id="form-wrapper">
   				<form id="form">
-  					<div class="flex-wrapper">
-  						<div style="flex: 6">
+  					<div class="jumbotron">
+                <h2>Add your meme here !!</h2>
   							<input id="name" class="form-control" type="text" name="Mname" placeholder="Your name here">
                 <input id="caption" class="form-control" type="text" name="Mcaption" placeholder="Caption, if any">
                 <input id="url" class="form-control" type="text" name="Murl" placeholder="Add an Image url here">
-  						</div>
-  						<div style="flex: 1">
-  							<input id="submit" class="btn" type="submit" >
-  						</div>
+                <br>
+  							<input id="submit" class="btn btn-success" type="submit" >
   					</div>
   				</form>
   			</div>
@@ -134,16 +138,19 @@
              for(var i in list){
 
                var item=`
-                  <div id="data-row-${i}" class="task-wrapper flex-wrapper">
+                  <div class="jumbotron">
                     ${list[i].name}
-                    <br>
+                    <br><br>
                     ${list[i].mcaption}
-                    <br>
+                    <br><br>
                     <img src="${list[i].meme_url}" alt="memeIMAGE" width="300" height="300">
-                    <div><button class="btn btn-sm btn-outline-info edit">Edit </button></div>
-                    <div><button class="btn btn-sm btn-outline-dark delete">Delete</button></div>
+                    <br><br>
+                    <button class="btn btn-success edit">Edit </button>
+                    <button class="fa fa-trash delete">Delete</button>
                   </div>
                `
+
+
                wrapper.innerHTML+=item
              }
 
