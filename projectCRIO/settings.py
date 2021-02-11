@@ -27,7 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['xmemeh.herokuapp.com']
 
-
 # Application definition
 
 INSTALLED_APPS = [
