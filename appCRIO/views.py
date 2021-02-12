@@ -1,10 +1,7 @@
 #
 # from django.views.generic import View,TemplateView,ListView,DetailView
 from django.http import HttpResponse,JsonResponse
-# from appCRIO.forms import MemeForm
-# from rest_framework import viewsets
-# from rest_framework import permissions
-# from rest_framework.parsers import JSONParser
+
 from rest_framework.response import Response
 from rest_framework.renderers import TemplateHTMLRenderer
 from appCRIO.models import Meme
@@ -15,27 +12,24 @@ from rest_framework import generics
 from rest_framework.decorators import api_view
 from django.shortcuts import render
 
-# class MemeList(generics.ListCreateAPIView):
-#     queryset = Meme.objects.all()
-#     serializer_class = MemeSerializer
-#
-#
-# class MemeDetail(generics.RetrieveUpdateDestroyAPIView):
-#     queryset = Meme.objects.all()
-#     serializer_class = MemeSerializer
-
-# class MemeList(APIView):
-#     #context_object_name='meme_obj'
-#     renderer_class=[TemplateHTMLRenderer]
-#     def get(self, request):
-#         queryset = Meme.objects.all()
-#         serializer= MemeSerializer(queryset,many=True)
-#         return render(request,'index.html',{'meme_obj':serializer.data})
 
 
 
 @api_view(['GET','POST'])
 def memeList(request):
+	if request.method=='GET':
+		meme = Meme.objects.all().order_by('-meme_id')[:100]
+		serializer = MemeSerializer(meme, many=True)
+	elif request.method=='POST':
+		serializer=MemeSerializer(data=request.data)
+		if serializer.is_valid():
+			serializer.save()
+
+	serJS = JsonResponse(serializer.data,safe=False)
+	return render(request,'list.html',{'data':serJS.content.decode()})
+
+@api_view(['GET','POST'])
+def memeListAPI(request):
 	if request.method=='GET':
 		meme = Meme.objects.all().order_by('-meme_id')[:100]
 		serializer = MemeSerializer(meme, many=True)
@@ -58,9 +52,20 @@ def memeDetail(request, pk):
 		serializer=MemeSerializer(instance=meme,data=request.data)
 		if serializer.is_valid():
 			serializer.save()
+	serJS = JsonResponse(serializer.data,safe=False)
+	return render(request,'list.html',{'data':serJS.content.decode()})
+
+@api_view(['GET','POST'])
+def memeDetailAPI(request, pk):
+	if request.method=='GET':
+		meme = Meme.objects.get(meme_id=pk)
+		serializer = MemeSerializer(meme, many=False)
+	elif request.method=='POST':
+		meme=Meme.objects.get(meme_id=pk)
+		serializer=MemeSerializer(instance=meme,data=request.data)
+		if serializer.is_valid():
+			serializer.save()
 	return Response(serializer.data)
-
-
 
 @api_view(['DELETE'])
 def memeDelete(request,pk):
