@@ -24,16 +24,15 @@
 
 
   		#meme-container{
-  		  max-width:600px;
+  		  max-width:800px;
   		  margin:0 auto;
   		  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
   		  background-color: #fff;
 
-  		  margin-top:100px;
-  		  margin-bottom:60px;
+  		  margin-top:20px;
+  		  margin-bottom:20px;
 
   		  justify-content: space-around;
-  		  align-items: flex-start;
 
   		}
 
@@ -41,10 +40,8 @@
   		  position: -webkit-sticky;
   		  position: sticky;
   		  top: 0rem;
-  		  border-bottom: 1px solid  #e9e9e9;
   		  background-color: #fff;
   		  box-shadow: 0 3px 8px rgba(0,0,0,0.25);
-        padding: 15px;
   		}
 
   		#submit{
@@ -70,8 +67,7 @@
       <div class="container">
 
         <ul class="nav navbar-nav">
-          <li><a class="navbar-brand" href="www.google.com"><em>XMeme</em><img src="https://media-exp1.licdn.com/dms/image/C510BAQF_iUEvYAZALQ/company-logo_200_200/0/1584436167827?e=2159024400&v=beta&t=qSMMNUBhEWojHutqv4AWgZbqtALCI-kQsVT9g9P9AwI" width="60" height="50" alt="crio.do"></a></li>
-          <!-- <li><a class="navbar-link" href="{% url 'admin:index' %}">Admin</a></li> -->
+          <li><a class="navbar-brand" href="https://www.crio.do/"><em>XMeme</em><img src="https://media-exp1.licdn.com/dms/image/C510BAQF_iUEvYAZALQ/company-logo_200_200/0/1584436167827?e=2159024400&v=beta&t=qSMMNUBhEWojHutqv4AWgZbqtALCI-kQsVT9g9P9AwI" width="60" height="50" alt="crio.do"></a></li>
           <li><a class="navbar-link" href="https://dharmesh78-criowod.netlify.app/">My Profile</a></li>
 
         </ul>
@@ -137,10 +133,10 @@
                   <div class="jumbotron">
                     <p><b>${list[i].name}</b></p>
                     <br>
-                    <p>${list[i].mcaption}</p>
-                    <br><br>
-                    <img src="${list[i].meme_url}" alt="memeIMAGE" width="300" height="300">
-                    <br><br>
+                    <p>${list[i].caption}</p>
+                    <br>
+                    <img src="${list[i].url}" alt="memeIMAGE" width="300" height="300">
+                    <br>
                     <button class="btn btn-success edit">Edit </button>
                     <button class="fa fa-trash delete">Delete</button>
                   </div>
@@ -181,7 +177,7 @@
           var url='http://127.0.0.1:8000/memes/'
 
           if(activeItem!=null){
-            var url=`http://127.0.0.1:8000/memes/${activeItem.meme_id}/`
+            var url=`http://127.0.0.1:8000/memes/${activeItem.id}/`
             activeItem=null
           }
           var mname=document.getElementById('name').value
@@ -194,7 +190,7 @@
                 'Content-type':'application/json',
                 'X-CSRFToken':csrftoken,
               },
-              body:JSON.stringify({'name':mname,'mcaption':mcaption,'meme_url':murl})
+              body:JSON.stringify({'name':mname,'caption':mcaption,'url':murl})
             }
           ).then(function(response){
             buildList()
@@ -206,14 +202,14 @@
           console.log('Item clicked: ',item)
           activeItem=item
           document.getElementById('name').value=activeItem.name
-          document.getElementById('caption').value=activeItem.mcaption
-          document.getElementById('url').value=activeItem.meme_url
+          document.getElementById('caption').value=activeItem.caption
+          document.getElementById('url').value=activeItem.url
         }
 
 
         function deleteItem(item){
           console.log('delete clicked',item)
-          var url=`http://127.0.0.1:8000/memes/memeDelete/${item.meme_id}/`
+          var url=`http://127.0.0.1:8000/memes/memeDelete/${item.id}/`
           fetch(url,{
             method:'DELETE',
             headers:{
@@ -227,5 +223,23 @@
 
 
     </script>
+    <div class="jumbotron">
+    <footer>
+      <p>
+        <a id="ftr" href="#" class="fa fa-facebook"></a>
+        <a id="ftr" href="#" class="fa fa-whatsapp"></a>
+        <a id="ftr" href="#" class="fa fa-instagram"></a>
+        <a id="ftr" href="#" class="fa fa-twitter"></a>
+      </p>
+      <br>
+        <div class="row">
+          <div class="col-md-12 col-sm-12">
+            <div style="color:#000000;" class="wow fadeInUp footer-copyright">
+              <p>Made By Dharmesh <br>Copyright &copy; 2021 CRIO.DO </p>
+            </div>
+          </div>
+        </div>
+    </footer>
+    </div>
   </body>
 </html>

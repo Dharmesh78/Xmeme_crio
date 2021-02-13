@@ -18,7 +18,7 @@ from django.shortcuts import render
 @api_view(['GET','POST'])
 def memeList(request):
 	if request.method=='GET':
-		meme = Meme.objects.all().order_by('-meme_id')[:100]
+		meme = Meme.objects.all().order_by('-id')[:100]
 		serializer = MemeSerializer(meme, many=True)
 	elif request.method=='POST':
 		serializer=MemeSerializer(data=request.data)
@@ -31,7 +31,7 @@ def memeList(request):
 @api_view(['GET','POST'])
 def memeListAPI(request):
 	if request.method=='GET':
-		meme = Meme.objects.all().order_by('-meme_id')[:100]
+		meme = Meme.objects.all().order_by('-id')[:100]
 		serializer = MemeSerializer(meme, many=True)
 	elif request.method=='POST':
 		serializer=MemeSerializer(data=request.data)
@@ -45,10 +45,10 @@ def memeListAPI(request):
 @api_view(['GET','POST'])
 def memeDetail(request, pk):
 	if request.method=='GET':
-		meme = Meme.objects.get(meme_id=pk)
+		meme = Meme.objects.get(id=pk)
 		serializer = MemeSerializer(meme, many=False)
 	elif request.method=='POST':
-		meme=Meme.objects.get(meme_id=pk)
+		meme=Meme.objects.get(id=pk)
 		serializer=MemeSerializer(instance=meme,data=request.data)
 		if serializer.is_valid():
 			serializer.save()
@@ -58,10 +58,10 @@ def memeDetail(request, pk):
 @api_view(['GET','POST'])
 def memeDetailAPI(request, pk):
 	if request.method=='GET':
-		meme = Meme.objects.get(meme_id=pk)
+		meme = Meme.objects.get(id=pk)
 		serializer = MemeSerializer(meme, many=False)
 	elif request.method=='POST':
-		meme=Meme.objects.get(meme_id=pk)
+		meme=Meme.objects.get(id=pk)
 		serializer=MemeSerializer(instance=meme,data=request.data)
 		if serializer.is_valid():
 			serializer.save()
@@ -69,7 +69,7 @@ def memeDetailAPI(request, pk):
 
 @api_view(['DELETE'])
 def memeDelete(request,pk):
-    meme=Meme.objects.get(meme_id=pk)
+    meme=Meme.objects.get(id=pk)
     meme.delete()
 
     return Response("Deleted")
