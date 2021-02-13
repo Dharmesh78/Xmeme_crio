@@ -11,15 +11,15 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AddField(
-            model_name='meme',
-            name='id',
-            field=models.AutoField( primary_key=True, serialize=False, verbose_name='ID'),
-            preserve_default=False,
-        ),
         migrations.AlterField(
             model_name='meme',
             name='mid',
             field=models.CharField(max_length=256, unique=True),
         ),
+        migrations.AddField(
+            model_name='meme',
+            name='id',
+            field=models.AutoField( primary_key=True, serialize=False, verbose_name='ID'),
+            preserve_default=False,
+        )
     ]
