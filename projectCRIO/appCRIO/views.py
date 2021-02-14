@@ -1,7 +1,7 @@
 #
 # from django.views.generic import View,TemplateView,ListView,DetailView
 from django.http import HttpResponse,JsonResponse
-
+from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.renderers import TemplateHTMLRenderer
 from appCRIO.models import Meme
@@ -45,7 +45,10 @@ def memeListAPI(request):
 @api_view(['GET','POST'])
 def memeDetail(request, pk):
 	if request.method=='GET':
-		meme = Meme.objects.get(id=pk)
+		try:
+			meme = Meme.objects.get(id=pk)
+		except Meme.DoesNotExist:
+			return HttpResponse(status=404)
 		serializer = MemeSerializer(meme, many=False)
 	elif request.method=='POST':
 		meme=Meme.objects.get(id=pk)
@@ -58,7 +61,10 @@ def memeDetail(request, pk):
 @api_view(['GET','POST'])
 def memeDetailAPI(request, pk):
 	if request.method=='GET':
-		meme = Meme.objects.get(id=pk)
+		try:
+			meme = Meme.objects.get(id=pk)
+		except Meme.DoesNotExist:
+			return HttpResponse(status=404)
 		serializer = MemeSerializer(meme, many=False)
 	elif request.method=='POST':
 		meme=Meme.objects.get(id=pk)
