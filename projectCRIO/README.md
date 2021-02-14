@@ -20,8 +20,7 @@ FOR MANUAL EXECUTION:
         
         
 FOR TESTING:
-    After cloning the repository, 
+    After cloning the repository
     CD into the cloned repo
-    CD into projectCRIO
     chmod +x test_server.sh
     ./test_server.sh
