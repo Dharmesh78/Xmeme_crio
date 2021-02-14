@@ -174,10 +174,10 @@
         form.addEventListener('submit',function(e){
           e.preventDefault()
           console.log('form submitted check')
-          var url='http://dharmesh7.pythonanywhere.com/memes/'
+          var url='http://127.0.0.1:8000/memes/'
 
           if(activeItem!=null){
-            var url=`http://dharmesh7.pythonanywhere.com/memes/${activeItem.id}/`
+            var url=`http://127.0.0.1:8000/memes/${activeItem.id}/`
             activeItem=null
           }
           var mname=document.getElementById('name').value
@@ -209,7 +209,7 @@
 
         function deleteItem(item){
           console.log('delete clicked',item)
-          var url=`http://dharmesh7.pythonanywhere.com/memes/memeDelete/${item.id}/`
+          var url=`http://127.0.0.1:8000/memes/memeDelete/${item.id}/`
           fetch(url,{
             method:'DELETE',
             headers:{
