@@ -16,7 +16,7 @@ For executing the project you do as follows:
     
 The server will start on http://127.0.0.1:8081
 
-To get to the django rest framework api go to the  http://127.0.0.1:8081/memes
+To go to the django rest framework api follow this url  http://127.0.0.1:8081/memes
 
 
 
