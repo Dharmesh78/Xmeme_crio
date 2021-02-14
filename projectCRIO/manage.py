@@ -4,6 +4,7 @@ import os
 import sys
 from django.core.management.commands.runserver import Command as runserver
 def main():
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'projectCRIO.settings')
     runserver.default_port="8081"
     try:
         from django.core.management import execute_from_command_line
