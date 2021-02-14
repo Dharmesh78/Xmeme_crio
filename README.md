@@ -1,5 +1,5 @@
-The project is developed using Django rest framework in virtual environment
-installing and activating virtual environment commands are included in the projectCRIO/install.sh files
+The project is developed using Django rest framework in virtual environment.
+Installing and activating virtual environment commands are included in the projectCRIO/install.sh files
 
 For executing the project you do as follows:
 
