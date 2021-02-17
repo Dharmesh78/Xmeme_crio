@@ -1,6 +1,5 @@
 #!/bin/bash
 sudo apt install -y python3-pip
-pip3 install -r requirements.txt
 sudo pip3 install virtualenvwrapper
 export WORKON_HOME=$HOME/.virtualenvs
 export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
@@ -10,4 +9,4 @@ source ~/.bashrc
 pip3 install virtualenv
 mkvirtualenv --python=python3.6.9  ~/venv_django
 sudo apt install -y python3-pip
-pip3 install -r requirements.txt
+sudo pip3 install -r requirements.txt
