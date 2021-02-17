@@ -20,8 +20,8 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('memes',include('appCRIO.urls')),
-    #path('memes/',include('appCRIO.urls')),
+    path('memes/',include('appCRIO.urls')),
+    #path('memes',include('appCRIO.urls')),
     path('',views.memeList,name='addDisplayMemes'),
     #path('',include('frontend.urls')),
 ]
