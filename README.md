@@ -1,11 +1,6 @@
-The project is developed using Django rest framework in virtual environment.
-Installing and activating virtual environment commands are included in the projectCRIO/install.sh files
-
 For executing the project you do as follows:
 
     --  clone the repository onto your machine
-    --  CD into repository
-    --  CD into projectCRIO
     
     --  chmod +x *   // make all script files executable
     
